@@ -87,10 +87,14 @@ export default {
       datos: []
     }
   },
+  mounted () {
+    this.getInfo()
+  },
   methods: {
     getInfo () {
       axios.get('/api/buscador').then(result => {
         this.datos = result.data
+        console.log(this.datos)
       })
     }
   }
