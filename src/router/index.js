@@ -1,10 +1,11 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
-import Navegacion from '@/components/Navegacion'
+import Inicio from '@/components/Inicio'
 import BusquedaA from '@/components/BusquedaA'
 import BusquedaB from '@/components/BusquedaB'
-import TablaCompleta from '@/components/TablaCompleta'
+import TablaCompletaA from '@/components/TablaCompletaA'
+import TablaCompletaB from '@/components/TablaCompletaB'
 
 Vue.use(Router)
 
@@ -13,8 +14,8 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'Navegacion',
-      component: Navegacion
+      name: 'Inicio',
+      component: Inicio
     },
     {
       path: '/BusquedaA',
@@ -27,9 +28,16 @@ export default new Router({
       component: BusquedaB
     },
     {
-      path: '/TablaCompleta',
-      name: 'TablaCompleta',
-      component: TablaCompleta
+      path: '/TablaCompletaA',
+      name: 'TablaCompletaA',
+      component: TablaCompletaA,
+      props: true
+    },
+    {
+      path: '/TablaCompletaB',
+      name: 'TablaCompletaB',
+      component: TablaCompletaB,
+      props: true
     }
   ]
 })

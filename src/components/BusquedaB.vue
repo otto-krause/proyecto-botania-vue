@@ -19,27 +19,12 @@
         <div class="collapse navbar-collapse" id="Filtros">
           <article class="card-group-item">
             <header class="card-title">
-              <h3 class="mt-3 mb-0">Fechas</h3>
+              <h3 class="mt-3 mb-0">ID</h3>
             </header>
-            <div class="card-body py-0">
-              <div class="form-row">
-                <div class="form-group col-sm-8">
-                  <label>Inicio</label>
-                  <input type="date" class="form-control" id="inputEmail4" placeholder="18" />
-                  <label>Fin</label>
-                  <input type="date" class="form-control" placeholder="100" />
-                </div>
-              </div>
-            </div>
             <div class="card-body">
               <div class="form-row">
                 <div class="form-group col-sm-8">
-                  <label>ID plantita</label>
                   <input type="number" class="form-control" placeholder="ID plantita" />
-                </div>
-                <div class="form-group col-sm-8">
-                  <label>Nombre plantita</label>
-                  <input type="text" class="form-control" placeholder="Nombre" />
                 </div>
               </div>
             </div>
@@ -63,7 +48,7 @@
             <th scope="col">{{dato.Fecha}}</th>
             <th scope="col">{{dato.Nombre}}</th>
             <th scope="col">
-                <router-link to="/TablaCompleta" class="nav-link btn btn-info fas fa-eye"></router-link>
+                <router-link :to="{ name: 'TablaCompletaB', params: { dato } }" class="nav-link btn btn-info fas fa-eye"></router-link>
             </th>
           </tr>
         </tbody>

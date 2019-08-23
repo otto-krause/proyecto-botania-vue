@@ -7,34 +7,42 @@
       </nav>
     </div>
     <table class="table">
-      <tbody>
+      <tbody v-bind="(dato, index)">
         <tr>
           <th>N°</th>
-          <td>1</td>
+          <td>{{index}}</td>
         </tr>
         <tr>
           <th>ID TP</th>
-          <td>000324</td>
+          <td>{{dato.IdPPropagacion}}</td>
         </tr>
                 <tr>
           <th>Nombre</th>
-          <td>Agapanthus caulescens Spreng</td>
+          <td>{{dato.Nombre}}</td>
         </tr>
                 <tr>
-          <th>Técnicos</th>
-          <td>Coultas_Laura / Bernhart_Darío</td>
+          <th>Tecnicos</th>
+          <td>{{dato.ApellidoTec}}_{{dato.NombreTec}} / {{dato.ApellidoAsist}}_{{dato.NombreAsist}}</td>
         </tr>
                 <tr>
-          <th>Objeto</th>
-          <td>Incorporación nueva especie monocotiledónea</td>
+          <th>Objetivo</th>
+          <td>{{dato.Objetivo}}</td>
         </tr>
                 <tr>
-          <th>Método</th>
-          <td>semilla</td>
+          <th>Metodo</th>
+          <td>{{dato.Metodo}}</td>
         </tr>
-                <tr>
-          <th>Ing./Legado/F.rec</th>
-          <td>000005147 / Barreriro, Graciela / 01/06/2012</td>
+            <tr>
+          <th>Ing./Legado/F.Rec.</th>
+          <td>{{dato.idIngreso}} / {{dato.Legado}} / {{dato.FRecoleccion}}</td>
+        </tr>
+            <tr>
+          <th>Ult.F. yyyy/mm/dd</th>
+          <td>{{dato.Fecha}}</td>
+        </tr>
+            <tr>
+          <th>Estado</th>
+          <td>{{dato.ItemCierre ? 'TP Abierto' : 'TP Cerrado'}}</td>
         </tr>
       </tbody>
     </table>
@@ -46,7 +54,8 @@ import Navegacion from './Navegacion'
 import axios from 'axios'
 
 export default {
-  name: 'TablaCompleta',
+  name: 'TablaCompletaA',
+  props: ['dato', 'index'],
   components: {
     Navegacion
   },

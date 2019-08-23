@@ -56,27 +56,17 @@
             <th scope="col">Nombre</th>
             <th scope="col">Tecnico</th>
             <th scope="col">Opciones</th>
-            <!-- <th scope="col">Objecto</th>
-            <th scope="col">Metodo</th>
-            <th scope="col">Ing./Legado/F.Rec</th>
-            <th scope="col">Ult.F.yyyy/mm/dd</th>
-            <th scope="col">Estado</th>-->
           </tr>
         </thead>
-        <tbody>
+        <tbody v-for="(dato, index) in datos" v-bind:key="dato.idPPropagacion">
           <tr>
-            <th scope="col">1</th>
-            <th scope="col">000324</th>
-            <th scope="col">agapanthus caulescens Spreng</th>
-            <th scope="col">Coultas Laura</th>
+            <th scope="col">{{index}}</th>
+            <th scope="col">{{dato.IdPPropagacion}}</th>
+            <th scope="col">{{dato.Nombre}}</th>
+            <th scope="col">{{dato.ApellidoTec}}</th>
             <th scope="col">
-                <router-link to="/TablaCompleta" class="nav-link btn btn-info fas fa-eye"></router-link>
+                <router-link :to="{ name: 'TablaCompletaA', params: { dato,index } }" class="nav-link btn btn-info fas fa-eye"></router-link>
             </th>
-            <!-- <th scope="col">incorporacion nueva especia monocotiledonea</th>
-            <th scope="col">semilla</th>
-            <th scope="col">000005147/Barreiro,Graciela</th>
-            <th scope="col">2013/02/25</th>
-            <th scope="col">TP CERRADO</th>-->
           </tr>
         </tbody>
       </table>
@@ -104,7 +94,7 @@ export default {
   },
   methods: {
     getInfo () {
-      axios.get('/api/buscador').then(result => {
+      axios.get('/api/BuscadorAvanzado').then(result => {
         this.datos = result.data
       })
     }
