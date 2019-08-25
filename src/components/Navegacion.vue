@@ -1,6 +1,6 @@
 <template>
   <nav class="navbar navbar-expand-md navbar-light bg-warning">
-    <a class="navbar-brand" href="#">Riego System</a>
+    <router-link class="navbar-brand" to="/">Riego System</router-link>
     <button
       class="navbar-toggler"
       type="button"

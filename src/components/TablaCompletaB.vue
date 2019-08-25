@@ -14,7 +14,7 @@
         </tr>
         <tr>
           <th>Fecha</th>
-          <td>{{dato.Fecha}}</td>
+          <td>{{dato.Fecha.slice(0,10)}}</td>
         </tr>
                 <tr>
           <th>Item</th>
@@ -31,8 +31,6 @@
 <script>
 import Navegacion from './Navegacion'
 
-import axios from 'axios'
-
 export default {
   name: 'TablaCompletaB',
   props: ['dato', 'index'],
@@ -42,16 +40,6 @@ export default {
   data () {
     return {
       datos: []
-    }
-  },
-  mounted () {
-    this.getTasks()
-  },
-  methods: {
-    getTasks () {
-      axios.get('/api/autoridad').then(result => {
-        this.datos = result.data
-      })
     }
   }
 }

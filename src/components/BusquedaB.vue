@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="overflow-auto">
     <navegacion />
     <div class="container-fluid">
       <nav class="navbar navbar-expand-xs navbar-light border-bottom border-dark">
@@ -24,7 +24,12 @@
             <div class="card-body">
               <div class="form-row">
                 <div class="form-group col-sm-8">
-                  <input type="number" class="form-control" placeholder="ID plantita" />
+                  <input
+                    type="number"
+                    v-model="search"
+                    class="form-control"
+                    placeholder="ID plantita"
+                  />
                 </div>
               </div>
             </div>
@@ -33,27 +38,49 @@
           </article>
         </div>
       </nav>
-      <table class="table">
-        <thead>
-          <tr>
-            <th scope="col">Reng</th>
-            <th scope="col">Fecha</th>
-            <th scope="col">Item</th>
-            <th scope="col">Opciones</th>
-          </tr>
-        </thead>
-        <tbody v-for="dato in datos" v-bind:key="dato.CodPPRenglon">
-          <tr>
-            <th scope="col">{{dato.CodPPRenglon}}</th>
-            <th scope="col">{{dato.Fecha}}</th>
-            <th scope="col">{{dato.Nombre}}</th>
-            <th scope="col">
-                <router-link :to="{ name: 'TablaCompletaB', params: { dato } }" class="nav-link btn btn-info fas fa-eye"></router-link>
-            </th>
-          </tr>
-        </tbody>
-      </table>
+      <div class="container-fluid table-responsive-sm">
+        <table class="table table-bordered">
+          <thead class="thead-light">
+            <tr>
+              <th scope="col-1">Reng</th>
+              <th scope="col-5">Fecha</th>
+              <th scope="col-1">Item</th>
+              <th scope="col-1"></th>
+            </tr>
+          </thead>
+          <tbody v-for="(dato, index) in displayedDatos" v-bind:key="index">
+            <tr>
+              <th scope="col-1">{{dato.CodPPRenglon}}</th>
+              <th scope="col-5">{{dato.Fecha.slice(0,10)}}</th>
+              <th scope="col-1">{{dato.Nombre}}</th>
+              <th scope="col-1">
+                <router-link
+                  :to="{ name: 'TablaCompletaB', params: { dato } }"
+                  class="nav-link btn btn-info fas fa-eye"
+                ></router-link>
+              </th>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
+    <nav class="d-flex justify-content-center">
+      <ul class="pagination">
+        <li class="page-item" v-if="page != 1">
+          <a class="page-link" href="#" v-on:click="page = 1">
+            <span aria-hidden="true">&laquo;</span>
+            <span class="sr-only">Previous</span>
+          </a>
+        </li>
+        <li v-for="pageNumber in pages.slice(Math.max(0,page-4), page+4)" v-bind:key="pageNumber" v-on:click="page = pageNumber" class="page-item"><a class="page-link" href="#">{{pageNumber}}</a></li>
+        <li class="page-item" v-if="page < pages.length">
+          <a class="page-link" href="#" v-on:click="page = pages.length">
+            <span aria-hidden="true">&raquo;</span>
+            <span class="sr-only">Next</span>
+          </a>
+        </li>
+      </ul>
+  </nav>
   </div>
 </template>
 
@@ -69,18 +96,50 @@ export default {
   },
   data () {
     return {
+      search: '',
+      page: 1,
+      perPage: 10,
+      pages: [],
       datos: []
     }
   },
   mounted () {
     this.getInfo()
   },
+  computed: {
+    filteredList () {
+      return this.datos.filter(dato => {
+        return dato.IdPPropagacion.includes(this.search)
+      })
+    },
+    displayedDatos () {
+      return this.paginate(this.filteredList)
+    }
+  },
   methods: {
-    getInfo () {
+    async getInfo () {
       axios.get('/api/buscador').then(result => {
         this.datos = result.data
-        console.log(this.datos)
       })
+    },
+    paginate (datos) {
+      let from = (this.page * this.perPage) - this.perPage
+      let to = (this.page * this.perPage)
+
+      return this.filteredList.slice(from, to)
+    },
+    setDatos () {
+      let numberOfDatos = Math.ceil(this.filteredList.length / this.perPage)
+      this.pages = []
+      for (let i = 1; i <= numberOfDatos; i++) {
+        this.pages.push(i)
+      }
+    }
+  },
+  watch: {
+    filteredList () {
+      this.page = 1
+      this.setDatos()
     }
   }
 }

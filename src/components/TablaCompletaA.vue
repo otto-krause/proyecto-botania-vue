@@ -34,11 +34,11 @@
         </tr>
             <tr>
           <th>Ing./Legado/F.Rec.</th>
-          <td>{{dato.idIngreso}} / {{dato.Legado}} / {{dato.FRecoleccion}}</td>
+          <td>{{dato.idIngreso}} / {{dato.Legado}} / {{dato.FRecoleccion.slice(0,10)}}</td>
         </tr>
             <tr>
           <th>Ult.F. yyyy/mm/dd</th>
-          <td>{{dato.Fecha}}</td>
+          <td>{{dato.Fecha.slice(0,10)}}</td>
         </tr>
             <tr>
           <th>Estado</th>
@@ -51,8 +51,6 @@
 <script>
 import Navegacion from './Navegacion'
 
-import axios from 'axios'
-
 export default {
   name: 'TablaCompletaA',
   props: ['dato', 'index'],
@@ -62,16 +60,6 @@ export default {
   data () {
     return {
       datos: []
-    }
-  },
-  mounted () {
-    this.getTasks()
-  },
-  methods: {
-    getTasks () {
-      axios.get('/api/autoridad').then(result => {
-        this.datos = result.data
-      })
     }
   }
 }

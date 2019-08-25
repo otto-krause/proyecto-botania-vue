@@ -5,7 +5,7 @@
   "author": "AleaIactaEst <maikholsozaki@gmail.com>",
   "private": true,
   "scripts": {
-    "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
+    "dev": "webpack-dev-server --host 0.0.0.0 --allowed-hosts 192.168.0.23 --inline --progress --config build/webpack.dev.conf.js",
     "start": "npm run dev",
     "lint": "eslint --ext .js,.vue src",
     "build": "node build/build.js"
@@ -13,6 +13,7 @@
   "dependencies": {
     "axios": "^0.19.0",
     "core-js": "^2.6.5",
+    "jw-vue-pagination": "^1.0.1",
     "vue": "^2.5.2",
     "vue-router": "^3.0.1"
   },
