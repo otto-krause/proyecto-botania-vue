@@ -1,6 +1,6 @@
 <template>
   <nav class="navbar navbar-expand-md navbar-light bg-warning">
-    <router-link class="navbar-brand" to="/">Riego System</router-link>
+    <router-link class="navbar-brand" to="/">Botanic System</router-link>
     <button
       class="navbar-toggler"
       type="button"
@@ -19,10 +19,10 @@
           <router-link to="/" class="nav-link">Inicio</router-link>
         </li>
         <li class="nav-item">
-          <router-link to="/BusquedaA" class="nav-link">Busqueda A</router-link>
+          <router-link to="/BusquedaA" class="nav-link">Busqueda Avanzada</router-link>
         </li>
         <li class="nav-item">
-          <router-link to="/BusquedaB" class="nav-link">Busqueda B</router-link>
+          <router-link to="/BusquedaB" class="nav-link">Busqueda por ID</router-link>
         </li>
       </ul>
     </div>

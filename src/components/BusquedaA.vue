@@ -19,27 +19,27 @@
         <div class="collapse navbar-collapse" id="Filtros">
           <article class="card-group-item">
             <header class="card-title">
-              <h3 class="mt-3 mb-0">Fechas (El unico filtro funcional es ID Plantita)</h3>
+              <h3 class="mt-3 mb-0">Fechas</h3>
             </header>
             <div class="card-body py-0">
               <div class="form-row">
                 <div class="form-group col-sm-8">
                   <label>Inicio</label>
-                  <input type="date" class="form-control" id="inputEmail4" placeholder="18" />
+                  <input type="date" v-model="fechaInicio" class="form-control"/>
                   <label>Fin</label>
-                  <input type="date" class="form-control" placeholder="100" />
+                  <input type="date" v-model="fechaFin" class="form-control"/>
                 </div>
               </div>
             </div>
             <div class="card-body">
               <div class="form-row">
                 <div class="form-group col-sm-8">
-                  <label>ID plantita</label>
-                  <input type="number" v-model="searchID" class="form-control" placeholder="ID plantita" />
+                  <label>ID planta</label>
+                  <input type="number" v-model="searchID" class="form-control" placeholder="ID" />
                 </div>
                 <div class="form-group col-sm-8">
-                  <label>Nombre plantita</label>
-                  <input type="text" class="form-control" placeholder="Nombre" />
+                  <label>Nombre planta</label>
+                  <input type="text" v-model="searchNombre" class="form-control" placeholder="Nombre" />
                 </div>
               </div>
             </div>
@@ -104,6 +104,9 @@ export default {
   data () {
     return {
       searchID: '',
+      searchNombre: '',
+      fechaInicio: new Date('0000/01/01').toISOString(),
+      fechaFin: new Date().toISOString(),
       page: 1,
       perPage: 10,
       pages: [],
@@ -116,11 +119,11 @@ export default {
   computed: {
     filteredList () {
       return this.datos.filter(dato => {
-        return dato.IdPPropagacion.includes(this.searchID)
+        return dato.IdPPropagacion.toLowerCase().includes(this.searchID.toLowerCase()) && dato.Nombre.toLowerCase().includes(this.searchNombre.toLowerCase()) && dato.Fecha >= this.fechaInicio && dato.Fecha <= this.fechaFin
       })
     },
     displayedDatos () {
-      return this.paginate(this.filteredList)
+      return this.paginate()
     }
   },
   methods: {
@@ -129,7 +132,7 @@ export default {
         this.datos = result.data
       })
     },
-    paginate (datos) {
+    paginate () {
       let from = (this.page * this.perPage) - this.perPage
       let to = (this.page * this.perPage)
 
@@ -145,6 +148,8 @@ export default {
   },
   watch: {
     filteredList () {
+      console.log(this.datos[0].Fecha)
+      console.log(this.fechaInicio)
       this.page = 1
       this.setDatos()
     }

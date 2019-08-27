@@ -19,7 +19,7 @@
         <div class="collapse navbar-collapse" id="Filtros">
           <article class="card-group-item">
             <header class="card-title">
-              <h3 class="mt-3 mb-0">ID</h3>
+              <h3 class="mt-3 mb-0">ID planta</h3>
             </header>
             <div class="card-body">
               <div class="form-row">
@@ -28,7 +28,7 @@
                     type="number"
                     v-model="search"
                     class="form-control"
-                    placeholder="ID plantita"
+                    placeholder="ID"
                   />
                 </div>
               </div>
