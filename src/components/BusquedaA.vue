@@ -24,9 +24,9 @@
             <div class="card-body py-0">
               <div class="form-row">
                 <div class="form-group col-sm-8">
-                  <label>Inicio</label>
+                  <label>Desde</label>
                   <input type="date" v-model="fechaInicio" class="form-control"/>
-                  <label>Fin</label>
+                  <label>Hasta</label>
                   <input type="date" v-model="fechaFin" class="form-control"/>
                 </div>
               </div>
@@ -148,8 +148,6 @@ export default {
   },
   watch: {
     filteredList () {
-      console.log(this.datos[0].Fecha)
-      console.log(this.fechaInicio)
       this.page = 1
       this.setDatos()
     }
