@@ -13,7 +13,7 @@
           aria-expanded="false"
           aria-label="Toggle navigation"
         >
-          <span class="navbar-toggler-icon"></span>
+        <span class="navbar-toggler-icon"></span>
         </button>
 
         <div class="collapse navbar-collapse" id="Filtros">
@@ -42,17 +42,17 @@
         <table class="table table-bordered">
           <thead class="thead-light">
             <tr>
-              <th scope="col-1">Reng</th>
-              <th scope="col-5">Fecha</th>
-              <th scope="col-1">Item</th>
-              <th scope="col-1"></th>
+              <th scope="col-1">Propagacion</th>
+              <th scope="col-1">ID Tecnico</th>
+              <th scope="col-1">Tecnico</th>
+              <th scope="col-1">Más Info</th>
             </tr>
           </thead>
           <tbody v-for="(dato, index) in displayedDatos" v-bind:key="index">
             <tr>
-              <th scope="col-1">{{dato.CodPPRenglon}}</th>
-              <th scope="col-5">{{dato.Fecha.slice(0,10)}}</th>
-              <th scope="col-1">{{dato.Nombre}}</th>
+              <th scope="col-1">{{dato.IdPPropagacion}}</th>
+              <th scope="col-1">{{dato.CodTecnico}}</th>
+              <th scope="col-1">{{dato.NombreTec}} {{dato.ApellidoTec}}</th>
               <th scope="col-1">
                 <router-link
                   :to="{ name: 'TablaCompletaB', params: { dato } }"
@@ -80,7 +80,7 @@
           </a>
         </li>
       </ul>
-  </nav>
+    </nav>
   </div>
 </template>
 

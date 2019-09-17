@@ -34,7 +34,7 @@
             <div class="card-body">
               <div class="form-row">
                 <div class="form-group col-sm-8">
-                  <label>ID planta</label>
+                  <label>ID TP</label>
                   <input type="number" v-model="searchID" class="form-control" placeholder="ID" />
                 </div>
                 <div class="form-group col-sm-8">
@@ -52,19 +52,19 @@
         <table class="table table-bordered">
         <thead class="thead-light">
           <tr>
+            <th scope="col">N°</th>
             <th scope="col">ID TP</th>
             <th scope="col">Nombre</th>
-            <th scope="col">Tecnico</th>
-            <th scope="col"></th>
+            <th scope="col">Más Info</th>
           </tr>
         </thead>
         <tbody v-for="(dato, index) in displayedDatos" v-bind:key="index">
           <tr>
+            <th scope="col">{{index + 1}}</th>
             <th scope="col">{{dato.IdPPropagacion}}</th>
             <th scope="col">{{dato.Nombre}}</th>
-            <th scope="col">{{dato.ApellidoTec}}</th>
             <th scope="col">
-                <router-link :to="{ name: 'TablaCompletaA', params: { dato,index } }" class="nav-link btn btn-info fas fa-eye"></router-link>
+                <router-link :to="{ name: 'TablaCompletaA', params: { dato } }" class="nav-link btn btn-info fas fa-eye"></router-link>
             </th>
           </tr>
         </tbody>

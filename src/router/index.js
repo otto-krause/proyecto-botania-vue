@@ -6,6 +6,7 @@ import BusquedaA from '@/components/BusquedaA'
 import BusquedaB from '@/components/BusquedaB'
 import TablaCompletaA from '@/components/TablaCompletaA'
 import TablaCompletaB from '@/components/TablaCompletaB'
+import TablaCompletaB2 from '@/components/TablaCompletaB2'
 
 Vue.use(Router)
 
@@ -37,6 +38,12 @@ export default new Router({
       path: '/TablaCompletaB',
       name: 'TablaCompletaB',
       component: TablaCompletaB,
+      props: true
+    },
+    {
+      path: '/TablaCompletaB2',
+      name: 'TablaCompletaB2',
+      component: TablaCompletaB2,
       props: true
     }
   ]

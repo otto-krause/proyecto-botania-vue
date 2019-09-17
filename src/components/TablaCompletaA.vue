@@ -6,48 +6,60 @@
         <router-link to="/BusquedaA" class="nav-link btn btn-info fas fa-arrow-circle-left"></router-link>
       </nav>
     </div>
-    <table class="table">
-      <tbody v-bind="(dato, index)">
-        <tr>
-          <th>N°</th>
-          <td>{{index}}</td>
-        </tr>
-        <tr>
-          <th>ID TP</th>
-          <td>{{dato.IdPPropagacion}}</td>
-        </tr>
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="card">
+          <div class="card-body">
+            <table class="table">
+              <tbody v-bind="dato">
                 <tr>
-          <th>Nombre</th>
-          <td>{{dato.Nombre}}</td>
-        </tr>
+                  <th>ID TP</th>
+                  <td>{{dato.IdPPropagacion}}</td>
+                </tr>
                 <tr>
-          <th>Tecnicos</th>
-          <td>{{dato.ApellidoTec}}_{{dato.NombreTec}} / {{dato.ApellidoAsist}}_{{dato.NombreAsist}}</td>
-        </tr>
+                  <th>Nombre</th>
+                  <td>{{dato.Nombre}}</td>
+                </tr>
                 <tr>
-          <th>Objetivo</th>
-          <td>{{dato.Objetivo}}</td>
-        </tr>
+                  <th>Tecnicos</th>
+                  <td>{{dato.ApellidoTec}}_{{dato.NombreTec}} / {{dato.ApellidoAsist}}_{{dato.NombreAsist}}</td>
+                </tr>
                 <tr>
-          <th>Metodo</th>
-          <td>{{dato.Metodo}}</td>
-        </tr>
-            <tr>
-          <th>Ing./Legado/F.Rec.</th>
-          <td>{{dato.idIngreso}} / {{dato.Legado}} / {{dato.FRecoleccion.slice(0,10)}}</td>
-        </tr>
-            <tr>
-          <th>Ult.F. yyyy/mm/dd</th>
-          <td>{{dato.Fecha.slice(0,10)}}</td>
-        </tr>
-            <tr>
-          <th>Estado</th>
-          <td>{{dato.ItemCierre ? 'TP Abierto' : 'TP Cerrado'}}</td>
-        </tr>
-      </tbody>
-    </table>
+                  <th>Objetivo</th>
+                  <td>{{dato.Objetivo}}</td>
+                </tr>
+                <tr>
+                  <th>Metodo</th>
+                  <td>{{dato.Metodo}}</td>
+                </tr>
+                <tr>
+                  <th>Ing./Legado/F.Rec.</th>
+                  <td>{{dato.idIngreso}} / {{dato.Legado}} / {{dato.FRecoleccion.slice(0,10)}}</td>
+                </tr>
+                <tr>
+                  <th>Ult.F. yyyy/mm/dd</th>
+                  <td>{{dato.Fecha.slice(0,10)}}</td>
+                </tr>
+                <tr>
+                  <th>Estado</th>
+                  <td>{{dato.ItemCierre ? 'TP Abierto' : 'TP Cerrado'}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-3">
+        <div class="card">
+          <div class="card-body">
+            <img src="https://dorsetperennials.co.uk/wp-content/uploads/2014/02/Kniphofia-Light-of-the-World-1-400x400.jpg" class="card-img-top">
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
+
 <script>
 import Navegacion from './Navegacion'
 
