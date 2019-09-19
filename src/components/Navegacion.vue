@@ -1,6 +1,8 @@
 <template>
   <nav class="navbar navbar-expand-md navbar-light bg-warning">
-    <router-link class="navbar-brand" to="/">Botanic System</router-link>
+    <router-link class="navbar-brand" to="/">
+    Botanic System
+    </router-link>
     <button
       class="navbar-toggler"
       type="button"
