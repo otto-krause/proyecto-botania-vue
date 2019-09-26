@@ -21,10 +21,10 @@
           <router-link to="/" class="nav-link">Inicio</router-link>
         </li>
         <li class="nav-item">
-          <router-link to="/BusquedaA" class="nav-link">Busqueda Avanzada</router-link>
+          <router-link to="/BusquedaA" class="nav-link">Consulta de Tarea de Propagación</router-link>
         </li>
         <li class="nav-item">
-          <router-link to="/BusquedaB" class="nav-link">Busqueda por ID</router-link>
+          <router-link to="/BusquedaB" class="nav-link">Tarea de Propagación</router-link>
         </li>
       </ul>
     </div>

@@ -5,7 +5,7 @@
       <nav class="navbar navbar-expand-md navbar-light border-bottom border-dark">
         <router-link to="/BusquedaB" class="nav-link btn btn-info fas fa-arrow-circle-left"></router-link>
       </nav>
-      <div class="row">
+      <div class="row mx-auto">
         <div class="col-sm-5">
           <div class="card">
             <div class="card-body">

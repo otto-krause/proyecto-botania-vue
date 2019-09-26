@@ -6,7 +6,7 @@
         <router-link to="/BusquedaA" class="nav-link btn btn-info fas fa-arrow-circle-left"></router-link>
       </nav>
     </div>
-    <div class="row">
+    <div class="row mx-auto">
       <div class="col-sm-6">
         <div class="card">
           <div class="card-body">
@@ -69,7 +69,7 @@ import Navegacion from './Navegacion'
 
 export default {
   name: 'TablaCompletaA',
-  props: ['dato'],
+  props: ['dato', 'index'],
   components: {
     Navegacion
   },
@@ -85,29 +85,13 @@ export default {
         'https://www.onsseeds.com/files/2882/products/809048/diospyroskaki3.jpg',
         'http://mcseeds.com/wp-content/uploads/2015/12/Cinnamomum_camphora.jpg',
         'https://www.pacificbulbsociety.org/pbswiki/files/Kniphofia/Kniphofia_stricta_Andriesberg_CM.jpg',
-        'https://i.ebayimg.com/images/g/yGgAAOSwpDdU3jkV/s-l300.jpg',
-        'https://www.passifloratuin.com/images/virtuemart/product/Rubra_4e5cd2b5bc05a.jpg',
-        'https://upload.wikimedia.org/wikipedia/commons/c/c4/Hemerocallis_lilio-asphodelus.jpg',
-        'https://botany.cz/foto/origanumotitesherb1.jpg',
-        'https://images-na.ssl-images-amazon.com/images/I/61v4Yuy-7UL._SX425_.jpg',
-        'https://www.palmerasyjardines.com/wp-content/uploads/2019/01/001392.jpg',
-        'http://www.longfield-gardens.com/_ccLib/image/plants/DETA-155.jpg',
-        'https://gardeners.s3.amazonaws.com/p/FLSAKE28396_3.jpg',
-        'https://www.naturescape.co.uk/wp-content/uploads/2016/09/Dropwort1.jpg',
-        'http://seedempire.com/images/detailed/1/Blackberry_Lily_Seeds_Belamcanda_Chinensis.jpg',
-        'https://www.longfield-gardens.com/_ccLib/image/plants/DETA-205.jpg',
-        'https://www.jardineriaon.com/wp-content/uploads/2016/11/Protea_cynaroides-1024x683.jpg',
-        'https://paisajismodigital.com/blog/wp-content/uploads/2018/05/alocasia2-1024x768.jpg',
-        'http://www.spicegarden.eu/WebRoot/StoreLES/Shops/62431129/4BA9/E5EF/F926/4CCD/DA18/C0A8/2936/CBF0/canna_edulis_2.jpg',
-        'https://ak7.picdn.net/shutterstock/videos/30565957/thumb/1.jpg',
-        'https://www.unavarra.es/herbario/fotos/Papa_rhoe/image001.jpg',
-        'https://k62.kn3.net/taringa/7/6/9/3/1/D/ilianamr1/567.jpg'
+        'https://i.ebayimg.com/images/g/yGgAAOSwpDdU3jkV/s-l300.jpg'
       ]
     }
   },
   computed: {
     displayedDatos () {
-      return this.plantas[Math.floor(Math.random() * 26)]
+      return this.plantas[this.index]
     }
   }
 }

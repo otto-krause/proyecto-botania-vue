@@ -55,7 +55,7 @@
             <th scope="col">N°</th>
             <th scope="col">ID TP</th>
             <th scope="col">Nombre</th>
-            <th scope="col">Más Info</th>
+            <th scope="col">+Info</th>
           </tr>
         </thead>
         <tbody v-for="(dato, index) in displayedDatos" v-bind:key="index">
@@ -64,7 +64,7 @@
             <th scope="col">{{dato.IdPPropagacion}}</th>
             <th scope="col">{{dato.Nombre}}</th>
             <th scope="col">
-                <router-link :to="{ name: 'TablaCompletaA', params: { dato } }" class="nav-link btn btn-info fas fa-eye"></router-link>
+                <router-link :to="{ name: 'TablaCompletaA', params: { dato, index } }" class="nav-link btn btn-info fas fa-eye"></router-link>
             </th>
           </tr>
         </tbody>

@@ -43,9 +43,9 @@
           <thead class="thead-light">
             <tr>
               <th scope="col-1">Propagacion</th>
-              <th scope="col-1">ID Tecnico</th>
+              <th scope="col-1">ID</th>
               <th scope="col-1">Tecnico</th>
-              <th scope="col-1">Más Info</th>
+              <th scope="col-1">+Info</th>
             </tr>
           </thead>
           <tbody v-for="(dato, index) in displayedDatos" v-bind:key="index">
