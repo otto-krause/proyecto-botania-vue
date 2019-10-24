@@ -25,7 +25,6 @@
                   <tr>
                     <th>Ing. Principal</th>
                     <td>
-                      <p>{{dato.CodIngreso0}}</p>
                       <p>{{dato.Nombre}}</p>
                       <p>Legado: {{dato.FLegado.slice(0,10)}} - {{dato.Legado}}</p>
                       <p>Rec: {{dato.LugarRecoleccion}}</p>
@@ -70,14 +69,14 @@
                   <table class="table table-bordered">
                     <thead class="thead-light">
                       <tr>
-                        <th scope="col-1">Renglon</th>
+                        <th scope="col-1">Fecha</th>
                         <th scope="col-1">Item</th>
                         <th scope="col-1">Mas info</th>
                       </tr>
                     </thead>
                     <tbody v-for="(dato2, index) in displayedDatos" v-bind:key="index">
                       <tr>
-                        <th scope="col-1">{{dato2.CodPPRenglon}}</th>
+                        <th scope="col-1">{{dato2.Fecha.slice(0, 10)}}</th>
                         <th scope="col-1">{{dato2.Nombre}}</th>
                         <th scope="col-1">
                           <router-link

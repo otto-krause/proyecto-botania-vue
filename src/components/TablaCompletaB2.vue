@@ -14,10 +14,6 @@
                 <td>{{dato2.CodPPRenglon}}</td>
               </tr>
               <tr>
-                <th>Fecha</th>
-                <td>{{dato2.Fecha.slice(0, 10)}}</td>
-              </tr>
-              <tr>
                 <th>Item</th>
                 <td>{{dato2.Nombre}}</td>
               </tr>

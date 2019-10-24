@@ -17,7 +17,7 @@
                   <td>{{dato.IdPPropagacion}}</td>
                 </tr>
                 <tr>
-                  <th>Nombre</th>
+                  <th>Nombre Científico</th>
                   <td>
                     <p>
                       <a class="btn btn-primary" data-toggle="collapse" href="#planta" role="button" aria-expanded="false" aria-controls="collapse">

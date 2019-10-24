@@ -43,7 +43,6 @@
           <thead class="thead-light">
             <tr>
               <th scope="col-1">Propagacion</th>
-              <th scope="col-1">ID</th>
               <th scope="col-1">Tecnico</th>
               <th scope="col-1">+Info</th>
             </tr>
@@ -51,7 +50,6 @@
           <tbody v-for="(dato, index) in displayedDatos" v-bind:key="index">
             <tr>
               <th scope="col-1">{{dato.IdPPropagacion}}</th>
-              <th scope="col-1">{{dato.CodTecnico}}</th>
               <th scope="col-1">{{dato.NombreTec}} {{dato.ApellidoTec}}</th>
               <th scope="col-1">
                 <router-link

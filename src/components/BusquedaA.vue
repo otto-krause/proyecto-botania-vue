@@ -38,7 +38,7 @@
                   <input type="number" v-model="searchID" class="form-control" placeholder="ID" />
                 </div>
                 <div class="form-group col-sm-8">
-                  <label>Nombre planta</label>
+                  <label>Nombre Científico</label>
                   <input type="text" v-model="searchNombre" class="form-control" placeholder="Nombre" />
                 </div>
               </div>
@@ -52,15 +52,15 @@
         <table class="table table-bordered">
         <thead class="thead-light">
           <tr>
-            <th scope="col">N°</th>
+            <th scope="col">Estado</th>
             <th scope="col">ID TP</th>
-            <th scope="col">Nombre</th>
+            <th scope="col">Nombre Científico</th>
             <th scope="col">+Info</th>
           </tr>
         </thead>
         <tbody v-for="(dato, index) in displayedDatos" v-bind:key="index">
           <tr>
-            <th scope="col">{{index + 1}}</th>
+            <th scope="col">{{dato.ItemCierre ? 'TP Abierto' : 'TP Cerrado'}}</th>
             <th scope="col">{{dato.IdPPropagacion}}</th>
             <th scope="col">{{dato.Nombre}}</th>
             <th scope="col">
