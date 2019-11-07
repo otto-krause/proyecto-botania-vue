@@ -42,15 +42,17 @@
         <table class="table table-bordered">
           <thead class="thead-light">
             <tr>
-              <th scope="col-1">Propagacion</th>
-              <th scope="col-1">Tecnico</th>
+              <th scope="col-1">Fecha</th>
+              <th scope="col-1">Legado</th>
+              <th scope="col-1">Nombre</th>
               <th scope="col-1">+Info</th>
             </tr>
           </thead>
           <tbody v-for="(dato, index) in displayedDatos" v-bind:key="index">
             <tr>
-              <th scope="col-1">{{dato.IdPPropagacion}}</th>
-              <th scope="col-1">{{dato.NombreTec}} {{dato.ApellidoTec}}</th>
+              <th scope="col-1">{{dato.FLegado.slice(0,10)}}</th>
+              <th scope="col-1">{{dato.Legado}}</th>
+              <th scope="col-1">{{dato.Nombre}}</th>
               <th scope="col-1">
                 <router-link
                   :to="{ name: 'TablaCompletaB', params: { dato } }"

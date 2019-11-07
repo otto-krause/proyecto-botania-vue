@@ -10,8 +10,8 @@
           <table class="table">
             <tbody v-bind="dato2">
               <tr>
-                <th>Renglon</th>
-                <td>{{dato2.CodPPRenglon}}</td>
+                <th>Fecha</th>
+                <td>{{dato2.Fecha.slice(0, 10)}}</td>
               </tr>
               <tr>
                 <th>Item</th>
