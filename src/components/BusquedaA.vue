@@ -1,6 +1,7 @@
 <template>
   <div class="overflow-auto">
     <navegacion />
+    <!-- {{filteredList}} -->
     <div class="container-fluid">
       <nav class="navbar navbar-expand-xs navbar-light border-bottom border-dark">
         <a class="navbar-brand" href="#">Filtros</a>
@@ -40,6 +41,10 @@
                 <div class="form-group col-sm-8">
                   <label>Nombre Científico</label>
                   <input type="text" v-model="searchNombre" class="form-control" placeholder="Nombre" />
+                </div>
+                <div class="form-group col-sm-8">
+                  <label>Objetivo</label>
+                  <input type="text" v-model="searchObjetivo" class="form-control" placeholder="Objetivo" />
                 </div>
               </div>
             </div>
@@ -105,6 +110,7 @@ export default {
     return {
       searchID: '',
       searchNombre: '',
+      searchObjetivo: '',
       fechaInicio: new Date('0000/01/01').toISOString(),
       fechaFin: new Date().toISOString(),
       page: 1,
@@ -119,7 +125,10 @@ export default {
   computed: {
     filteredList () {
       return this.datos.filter(dato => {
-        return dato.IdPPropagacion.toLowerCase().includes(this.searchID.toLowerCase()) && dato.Nombre.toLowerCase().includes(this.searchNombre.toLowerCase()) && dato.Fecha >= this.fechaInicio && dato.Fecha <= this.fechaFin
+        return dato.IdPPropagacion.toLowerCase().includes(this.searchID.toLowerCase()) &&
+        dato.Nombre.toLowerCase().includes(this.searchNombre.toLowerCase()) &&
+        dato.Fecha >= this.fechaInicio && dato.Fecha <= this.fechaFin &&
+        dato.Objetivo.toLowerCase().includes(this.searchObjetivo.toLowerCase())
       })
     },
     displayedDatos () {
@@ -130,6 +139,11 @@ export default {
     async getInfo () {
       axios.get('/api/BuscadorAvanzado').then(result => {
         this.datos = result.data
+        this.datos.forEach(dato => {
+          if (!dato.Objetivo) {
+            dato.Objetivo = 'Ninguno'
+          }
+        })
       })
     },
     paginate () {

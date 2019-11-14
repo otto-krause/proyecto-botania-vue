@@ -37,24 +37,8 @@
                     <td>{{dato.Objetivo}}</td>
                   </tr>
                   <tr>
-                    <th>Fecha Inicio</th>
-                    <td>{{dato.FAltaTP.slice(0,10)}}</td>
-                  </tr>
-                  <tr>
                     <th>Metodo</th>
                     <td>{{dato.Metodo}}</td>
-                  </tr>
-                  <tr>
-                    <th>Usuario</th>
-                    <td>{{dato.CreadoUsuario}}</td>
-                  </tr>
-                  <tr>
-                    <th>Creado</th>
-                    <td>{{dato.CreadoFecha.slice(0,10)}}</td>
-                  </tr>
-                  <tr>
-                    <th>Modificado</th>
-                    <td>{{dato.ModFecha.slice(0,10)}}</td>
                   </tr>
                 </tbody>
               </table>
