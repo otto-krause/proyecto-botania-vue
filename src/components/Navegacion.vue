@@ -21,7 +21,7 @@
           <router-link to="/" class="nav-link">Inicio</router-link>
         </li>
         <li class="nav-item">
-          <router-link to="/BusquedaA" class="nav-link">Consulta de Tarea de Propagación</router-link>
+          <router-link to="/BusquedaA" class="nav-link">Listado de Tarea de Propagación</router-link>
         </li>
         <li class="nav-item">
           <router-link to="/BusquedaB" class="nav-link">Tarea de Propagación</router-link>
