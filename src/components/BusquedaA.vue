@@ -46,6 +46,41 @@
                   <label>Objetivo</label>
                   <input type="text" v-model="searchObjetivo" class="form-control" placeholder="Objetivo" />
                 </div>
+                <div class="form-group col-sm-8">
+                  <label>Ver estado</label>
+                  <div v-if="enCurso && finalizado">
+                    <div class="custom-control custom-checkbox custom-control-inline">
+                      <input type="checkbox" class="custom-control-input" v-model="enCurso" id="enCurso" checked>
+                      <label class="custom-control-label" for="enCurso">En curso</label>
+                    </div>
+                    <div class="custom-control custom-checkbox custom-control-inline">
+                      <input type="checkbox" class="custom-control-input" v-model="finalizado" id="finalizado" checked>
+                      <label class="custom-control-label" for="finalizado">Finalizado</label>
+                    </div>
+                  </div>
+                  <div v-else>
+                    <div v-if="enCurso">
+                      <div class="custom-control custom-checkbox custom-control-inline">
+                        <input type="checkbox" class="custom-control-input" v-model="enCurso" id="enCurso" disabled checked>
+                        <label class="custom-control-label" for="enCurso">En curso</label>
+                      </div>
+                      <div class="custom-control custom-checkbox custom-control-inline">
+                        <input type="checkbox" class="custom-control-input" v-model="finalizado" id="finalizado" checked>
+                        <label class="custom-control-label" for="finalizado">Finalizado</label>
+                      </div>
+                    </div>
+                    <div v-else>
+                      <div class="custom-control custom-checkbox custom-control-inline">
+                        <input type="checkbox" class="custom-control-input" v-model="enCurso" id="enCurso" checked>
+                        <label class="custom-control-label" for="enCurso">En curso</label>
+                      </div>
+                      <div class="custom-control custom-checkbox custom-control-inline">
+                        <input type="checkbox" class="custom-control-input" v-model="finalizado" id="finalizado" disabled checked>
+                        <label class="custom-control-label" for="finalizado">Finalizado</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
 
@@ -111,6 +146,8 @@ export default {
       searchID: '',
       searchNombre: '',
       searchObjetivo: '',
+      enCurso: true,
+      finalizado: true,
       fechaInicio: new Date('0000/01/01').toISOString(),
       fechaFin: new Date().toISOString(),
       page: 1,
@@ -128,7 +165,8 @@ export default {
         return dato.IdPPropagacion.toLowerCase().includes(this.searchID.toLowerCase()) &&
         dato.Nombre.toLowerCase().includes(this.searchNombre.toLowerCase()) &&
         dato.Fecha >= this.fechaInicio && dato.Fecha <= this.fechaFin &&
-        dato.Objetivo.toLowerCase().includes(this.searchObjetivo.toLowerCase())
+        dato.Objetivo.toLowerCase().includes(this.searchObjetivo.toLowerCase()) &&
+        this.enCurso && this.finalizado ? dato.ItemCierre === 1 || dato.ItemCierre === 0 : this.enCurso !== this.finalizado && this.enCurso ? dato.ItemCierre === 1 : dato.ItemCierre === 0
       })
     },
     displayedDatos () {
