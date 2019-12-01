@@ -19,7 +19,7 @@
         <div class="collapse navbar-collapse" id="Filtros">
           <article class="card-group-item">
             <header class="card-title">
-              <h3 class="mt-3 mb-0">ID planta</h3>
+              <h3 class="mt-3 mb-0">ID Especimen</h3>
             </header>
             <div class="card-body">
               <div class="form-row">
@@ -54,12 +54,55 @@
               <th scope="col-1">{{dato.Legado}}</th>
               <th scope="col-1">{{dato.Nombre}}</th>
               <th scope="col-1">
-                <router-link
-                  :to="{ name: 'TablaCompletaB', params: { dato } }"
-                  class="nav-link btn btn-info fas fa-eye"
-                ></router-link>
+                <a class="nav-link btn btn-info fas fa-eye" data-toggle="collapse" :href="'#collapse' + index" role="button"></a>
               </th>
             </tr>
+            <td colspan="4" class="collapse" :id="'collapse' + index">
+              <div class="row mx-auto">
+                <div class="col-sm-5">
+                  <div class="card">
+                    <div class="card-body">
+                      <table class="table">
+                        <tbody>
+                          <tr>
+                            <th>Propagacion</th>
+                            <td>{{dato.IdPPropagacion}}</td>
+                          </tr>
+                          <tr>
+                            <th>Tecnicos</th>
+                            <td>
+                              <p>{{dato.CodTecnico}} - {{dato.NombreTec}} {{dato.ApellidoTec}}</p>
+                              <p>{{dato.CodAsistente}} - {{dato.NombreAsist}} {{dato.ApellidoAsist}}</p>
+                              </td>
+                          </tr>
+                          <tr>
+                            <th>Ing. Principal</th>
+                            <td>
+                              <p>{{dato.Nombre}}</p>
+                              <p>Legado: {{dato.FLegado.slice(0,10)}} - {{dato.Legado}}</p>
+                              <p>Rec: {{dato.LugarRecoleccion}}</p>
+                              <p>{{dato.Metodo}}</p>
+                              <p>Cantidad en origen: {{dato.Cantidad}}</p>
+                            </td>
+                          </tr>
+                          <tr>
+                            <th>Objetivo</th>
+                            <td>{{dato.Objetivo}}</td>
+                          </tr>
+                          <tr>
+                            <th>Metodo</th>
+                            <td>{{dato.Metodo}}</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm">
+                  <TablaCompletaB :dato="dato"></TablaCompletaB>
+                </div>
+              </div>
+            </td>
           </tbody>
         </table>
       </div>
@@ -85,14 +128,17 @@
 </template>
 
 <script>
+/* eslint-disable */
 import Navegacion from './Navegacion'
+import TablaCompletaB from './TablaCompletaB'
 
 import axios from 'axios'
 
 export default {
   name: 'BusquedaB',
   components: {
-    Navegacion
+    Navegacion,
+    TablaCompletaB
   },
   data () {
     return {

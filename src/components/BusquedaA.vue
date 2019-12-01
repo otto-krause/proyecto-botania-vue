@@ -26,9 +26,9 @@
               <div class="form-row">
                 <div class="form-group col-sm-8">
                   <label>Desde</label>
-                  <input type="date" v-model="fechaInicio" class="form-control"/>
+                  <input type="date" v-model="fechaInicio" min='1970-01-01' max='2100-01-01' class="form-control"/>
                   <label>Hasta</label>
-                  <input type="date" v-model="fechaFin" class="form-control"/>
+                  <input type="date" v-model="fechaFin" min='1970-01-01' max='2100-01-01' class="form-control"/>
                 </div>
               </div>
             </div>
@@ -47,39 +47,10 @@
                   <input type="text" v-model="searchObjetivo" class="form-control" placeholder="Objetivo" />
                 </div>
                 <div class="form-group col-sm-8">
-                  <label>Ver estado</label>
-                  <div v-if="enCurso && finalizado">
-                    <div class="custom-control custom-checkbox custom-control-inline">
-                      <input type="checkbox" class="custom-control-input" v-model="enCurso" id="enCurso" checked>
-                      <label class="custom-control-label" for="enCurso">En curso</label>
-                    </div>
-                    <div class="custom-control custom-checkbox custom-control-inline">
-                      <input type="checkbox" class="custom-control-input" v-model="finalizado" id="finalizado" checked>
-                      <label class="custom-control-label" for="finalizado">Finalizado</label>
-                    </div>
-                  </div>
-                  <div v-else>
-                    <div v-if="enCurso">
-                      <div class="custom-control custom-checkbox custom-control-inline">
-                        <input type="checkbox" class="custom-control-input" v-model="enCurso" id="enCurso" disabled checked>
-                        <label class="custom-control-label" for="enCurso">En curso</label>
-                      </div>
-                      <div class="custom-control custom-checkbox custom-control-inline">
-                        <input type="checkbox" class="custom-control-input" v-model="finalizado" id="finalizado" checked>
-                        <label class="custom-control-label" for="finalizado">Finalizado</label>
-                      </div>
-                    </div>
-                    <div v-else>
-                      <div class="custom-control custom-checkbox custom-control-inline">
-                        <input type="checkbox" class="custom-control-input" v-model="enCurso" id="enCurso" checked>
-                        <label class="custom-control-label" for="enCurso">En curso</label>
-                      </div>
-                      <div class="custom-control custom-checkbox custom-control-inline">
-                        <input type="checkbox" class="custom-control-input" v-model="finalizado" id="finalizado" disabled checked>
-                        <label class="custom-control-label" for="finalizado">Finalizado</label>
-                      </div>
-                    </div>
-                  </div>
+                  <input type="checkbox" id="enCurso" v-model="enCurso">
+                  <label for="enCurso">En Curso</label>
+                  <input type="checkbox" id="finalizado" v-model="finalizado">
+                  <label for="finalizado">Finalizado</label>
                 </div>
               </div>
             </div>
@@ -104,9 +75,56 @@
             <th scope="col">{{dato.IdPPropagacion}}</th>
             <th scope="col">{{dato.Nombre}}</th>
             <th scope="col">
-                <router-link :to="{ name: 'TablaCompletaA', params: { dato, index } }" class="nav-link btn btn-info fas fa-eye"></router-link>
+              <a class="nav-link btn btn-info fas fa-eye" data-toggle="collapse" :href="'#collapse' + index" role="button"></a>
             </th>
           </tr>
+          <td colspan="4" class="collapse" :id="'collapse' + index">
+              <table class="table">
+              <tbody v-bind="dato">
+                <tr>
+                  <th>ID TP</th>
+                  <td>{{dato.IdPPropagacion}}</td>
+                </tr>
+                <tr>
+                  <th>Nombre Científico</th>
+                  <td>
+                    <p>
+                      {{dato.Nombre}}
+                    </p>
+                    <div class="collapse" id="planta">
+                      <div class="card card-body">
+                        <img v-bind:src="displayedDatos" class="card-img-top" alt="Planta 1">
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <th>Tecnicos</th>
+                  <td>{{dato.ApellidoTec}}_{{dato.NombreTec}} / {{dato.ApellidoAsist}}_{{dato.NombreAsist}}</td>
+                </tr>
+                <tr>
+                  <th>Objetivo</th>
+                  <td>{{dato.Objetivo}}</td>
+                </tr>
+                <tr>
+                  <th>Metodo</th>
+                  <td>{{dato.Metodo}}</td>
+                </tr>
+                <tr>
+                  <th>Ing./Legado/F.Rec.</th>
+                  <td>{{dato.idIngreso}} / {{dato.Legado}} / {{dato.FRecoleccion.slice(0,10)}}</td>
+                </tr>
+                <tr>
+                  <th>Ult.F. yyyy/mm/dd</th>
+                  <td>{{dato.Fecha.slice(0,10)}}</td>
+                </tr>
+                <tr>
+                  <th>Estado</th>
+                  <td>{{dato.ItemCierre ? 'TP Abierto' : 'TP Cerrado'}}</td>
+                </tr>
+              </tbody>
+            </table>
+            </td>
         </tbody>
       </table>
       </div>
@@ -132,6 +150,7 @@
 </template>
 
 <script>
+/* eslint-disable */ 
 import Navegacion from './Navegacion'
 
 import axios from 'axios'
@@ -162,11 +181,16 @@ export default {
   computed: {
     filteredList () {
       return this.datos.filter(dato => {
-        return dato.IdPPropagacion.toLowerCase().includes(this.searchID.toLowerCase()) &&
-        dato.Nombre.toLowerCase().includes(this.searchNombre.toLowerCase()) &&
-        dato.Fecha >= this.fechaInicio && dato.Fecha <= this.fechaFin &&
-        dato.Objetivo.toLowerCase().includes(this.searchObjetivo.toLowerCase()) &&
-        this.enCurso && this.finalizado ? dato.ItemCierre === 1 || dato.ItemCierre === 0 : this.enCurso !== this.finalizado && this.enCurso ? dato.ItemCierre === 1 : dato.ItemCierre === 0
+        return (
+          dato.IdPPropagacion.includes(this.searchID) &&
+          dato.Nombre.toLowerCase().includes(this.searchNombre.toLowerCase()) &&
+          dato.Fecha >= this.fechaInicio &&
+          dato.Fecha <= this.fechaFin &&
+          (dato.Objetivo ? dato.Objetivo.toLowerCase().includes(this.searchObjetivo.toLowerCase()) : true) &&
+          (
+            (this.enCurso ? dato.ItemCierre == 1 : false) ? true : (this.finalizado ? dato.ItemCierre == 0 : false)
+          )
+        )
       })
     },
     displayedDatos () {
@@ -177,11 +201,6 @@ export default {
     async getInfo () {
       axios.get('/api/BuscadorAvanzado').then(result => {
         this.datos = result.data
-        this.datos.forEach(dato => {
-          if (!dato.Objetivo) {
-            dato.Objetivo = 'Ninguno'
-          }
-        })
       })
     },
     paginate () {
@@ -200,6 +219,12 @@ export default {
   },
   watch: {
     filteredList () {
+      if(!this.fechaInicio){
+        this.fechaInicio = new Date("1970-01-01").toISOString()
+      }
+      if(!this.fechaFin){
+        this.fechaFin = new Date().toISOString()
+      }
       this.page = 1
       this.setDatos()
     }
